@@ -3,7 +3,6 @@ import click
 
 
 @click.command()
-# @click.argument('action') will implement later
 @click.option('--count', default=5, help='Number of options you want displayed.')
 @click.option('--type', default='any',
               help='The type of food you are looking for.')
