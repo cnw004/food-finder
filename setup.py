@@ -15,5 +15,6 @@ setup(name='fp',
         'Click',
         'geopy',
         'requests',
-        'configparser'
+        'configparser',
+        'simplejson'
     ])
