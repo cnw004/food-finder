@@ -22,8 +22,11 @@ def search_yelp(coordinates, kinds):
     key = parser.get('api-access', 'key')
     client_id = parser.get('api-access', 'client_id')
 
+    # tuple -> string separated by commas
+    kind_string = ','.join(kinds)
+
     url = 'https://api.yelp.com/v3/businesses/search?'
-    url += '&' + 'kinds=' + kinds
+    url += '&' + 'kinds=' + kind_string
     url += '&' + 'latitude=' + coordinates['latitude']
     url += '&' + 'longitude=' + coordinates['longitude']
 

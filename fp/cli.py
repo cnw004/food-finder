@@ -5,15 +5,15 @@ import configparser
 @click.group()
 def main():
     """
-    Simple CLI for finding restuarants nearby by Cole Whitley
+    Simple CLI for finding restuarants nearby
     """
     pass
 
 @main.command()
-@click.option('--kind', default='food', help='Kind of business you are searching for (i.e. chinese, bbq, etc.)')
+@click.option('--kind', '-k', type=str, default='food', multiple=True,help='Kind of business you are searching for (i.e. chinese, bbq, etc.)')
 @click.argument('addr')
 def find(addr, kind):
-    """This function will find businesses nearby"""
+    """Search for the best food nearby"""
 
     location = get_location(addr)
     if location == None:
@@ -25,7 +25,7 @@ def find(addr, kind):
         
     response = search_yelp(coordinates, kind)
     click.echo('latitude: ' + coordinates['latitude'] + ' longitude: ' + coordinates['longitude'])
-    click.echo('categories: ' + kind)
+    click.echo('categories: ' + ','.join(kind))
     click.echo(response)
 
 if __name__ == "__main__":
