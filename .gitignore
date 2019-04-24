@@ -2,3 +2,4 @@ env/
 fp.egg-info
 .vscode/
 CONFIG.cfg
+fp/__pycache__/
