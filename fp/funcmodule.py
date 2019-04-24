@@ -24,8 +24,8 @@ def search_yelp(coordinates, kinds):
 
     url = 'https://api.yelp.com/v3/businesses/search?'
     url += '&' + 'kinds=' + kinds
-    url += '&' + 'latitude=' + str(coordinates[0])
-    url += '&' + 'longitude=' + str(coordinates[1])
+    url += '&' + 'latitude=' + coordinates['latitude']
+    url += '&' + 'longitude=' + coordinates['longitude']
 
     headers = {'Authorization': 'Bearer ' + key,
         'Content-Type': 'application/json'}
