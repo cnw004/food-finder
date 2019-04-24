@@ -1,1 +1,14 @@
 language: python
+
+# blocklist
+branches:
+  except:
+  - experimental
+
+# safelist
+branches:
+  only:
+  - master
+
+install:
+  - python3 setup.py install
