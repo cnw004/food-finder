@@ -20,10 +20,11 @@ def find(addr, kind):
         click.echo('Invalid address')
         exit(1)
     else:
-        coordinates = (location.latitude, location.longitude)
+        coordinates = {'latitude': str(location.latitude), 
+                        'longitude': str(location.longitude)}
         
     response = search_yelp(coordinates, kind)
-    click.echo('latitude: ' + str(coordinates[0]) + ' longitude: ' + str(coordinates[1]))
+    click.echo('latitude: ' + coordinates['latitude'] + ' longitude: ' + coordinates['longitude'])
     click.echo('categories: ' + kind)
     click.echo(response)
 
