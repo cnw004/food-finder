@@ -12,5 +12,8 @@ setup(name='fp',
         'console_scripts': ['fp = fp.cli:main']
       },
       install_requires=[
-        'Click'
+        'Click',
+        'geopy',
+        'requests',
+        'configparser'
     ])

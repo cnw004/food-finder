@@ -1,3 +1,4 @@
 env/
 fp.egg-info
 .vscode/
+CONFIG.cfg
