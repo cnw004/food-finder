@@ -26,8 +26,8 @@ def find(addr, kind, number, radius):
                         'longitude': str(location.longitude)}
         
     response = search_yelp(coordinates, kind, str(number), miles_to_meters(radius))
-    click.echo('latitude: ' + coordinates['latitude'] + ' longitude: ' + coordinates['longitude'])
-    click.echo('categories: ' + ','.join(kind))
+    #click.echo('latitude: ' + coordinates['latitude'] + ' longitude: ' + coordinates['longitude'])
+    #click.echo('categories: ' + ','.join(kind))
     click.echo(response)
 
 if __name__ == "__main__":

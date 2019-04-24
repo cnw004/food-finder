@@ -31,25 +31,27 @@ def search_yelp(coordinates, kinds, number, radius):
     key = parser.get('api-access', 'key')
     client_id = parser.get('api-access', 'client_id')
 
-    # tuple -> string separated by commas
-    kind_string = ','.join(kinds)
-    if kinds == ():
-        kind_string += 'food'
+    
 
     url = 'https://api.yelp.com/v3/businesses/search?'
-    url += '&' + 'kinds=' + kind_string
+    url += '&' + 'term=food'
     url += '&' + 'latitude=' + coordinates['latitude']
     url += '&' + 'longitude=' + coordinates['longitude']
     url += '&' + 'limit=' + number
     url += '&' + 'radius=' + str(radius)
+    url += '&' + 'sort_by' + 'rating'
+    # tuple -> string separated by commas
+    if kinds != ():
+        kind_string = ','.join(kinds)
+        url += '&' + 'categories=' + kind_string
 
-    print(url)
+    #print(url)
 
     headers = {'Authorization': 'Bearer ' + key,
         'Content-Type': 'application/json'}
     r = requests.get(url, headers=headers)
     dirty_output = json.loads(r.text)
-    print(dirty_output)
+    #print(dirty_output)
     sanitized_output = json.dumps(sanitize_data(dirty_output), sort_keys=True, indent=4 * ' ')
     pretty_string = pretty_print(sanitized_output)
 
@@ -61,17 +63,26 @@ def sanitize_data(raw_data):
     """
     info = {}
     for business in raw_data['businesses']:
-        category_list = []
-        for i in range(len(business['categories'])):
-            category_list.append(business['categories'][i]['title'])
-        info[business['name']] = {
-            'rating': business['rating'],
-            'open': (business['is_closed'] == False),
-            'price': business['price'],
-            'distance': str(meters_to_miles(business['distance'])) + ' miles',
-            'phone': None if business['phone'] == '' else business['phone'],
-            'categories': ', '.join(category_list)
-        }
+        
+        # the object we will store our information in, based on name
+        info[business['name']] = {}
+
+        # check each atrribute listed for each business and make sure we care about it, then add it to our info obj
+        desired_attrs = ['rating', 'is_closed', 'price', 'distance', 'phone', 'categories']
+        for item in desired_attrs:
+            if item in business:
+                if item == 'distance':
+                    info[business['name']][item] = str(meters_to_miles(business[item])) + ' miles'
+                elif item == 'categories':
+                    category_list = []
+                    for i in range(len(business['categories'])):
+                        category_list.append(business['categories'][i]['title'])
+                    info[business['name']][item] = ', '.join(category_list)
+                elif item == 'is_closed':
+                    info[business['name']]['open'] = (business['is_closed'] == False)
+                else:
+                    info[business['name']][item] = business[item]
+        
     return info
 
 def pretty_print(sanitized_data):
