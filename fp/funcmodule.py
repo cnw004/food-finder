@@ -93,7 +93,7 @@ def sanitize_data(raw_data):
                 elif item == 'is_closed':
                     info[business['name']]['open'] = (business['is_closed'] == False)
                 elif item == 'location':
-                    info[business['name']]['location'] = business['location']['address1']
+                    info[business['name']]['location'] = business['location']['address1'] + ', ' + business['location']['city']
                 else:
                     info[business['name']][item] = business[item]
         
