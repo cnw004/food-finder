@@ -1,7 +1,28 @@
-# food-finder
-Food Finder is a CLI tool for quickly finding the best restaurants near a given location. During my weekly work travels, I found myself searching Yelp daily for new restaurants. This CLI tool is the first step in my automation of this process.
+# food-picker
+Food Picker is a CLI tool for quickly finding the best restaurants near a given location. During my weekly work travels, I found myself searching Yelp daily for new restaurants. This CLI tool is the first step in my automation of this process.
 
-[![Build Status](https://travis-ci.com/cnw004/food-finder.svg?branch=master)](https://travis-ci.com/cnw004/food-finder)
+[![Build Status](https://travis-ci.com/cnw004/food-picker.svg?branch=master)](https://travis-ci.com/cnw004/food-picker)
 
-# Screen shot of CLI results
-![fp in action!]()
+### Screen shot of CLI results
+![fp in action!](https://github.com/cnw004/food-picker/blob/images/imgs/output.png)
+
+### Installation
+Begin by cloning this repository to your local machine
+`git clone git@github.com:cnw004/food-picker.git`
+Move into the root direcctory and run the `setup.py` script:
+`python setup.py install`
+This will install food-picker and all necessary dependencies. You can now run the CLI tool by typing `fp`
+**Make sure to complete the setup step before attempting to run `fp`**
+
+#### Setup
+This CLI tool leverages the Yelp Fusion API. In order for the CLI tool to make requests, you must obtain an authorization key from Yelp. Go to [this webpage](https://www.yelp.com/developers/documentation/v3/authentication) and follow the instructions to obtain your key. 
+
+Once you have a key, create a file in the root directory called `CONFIG.cfg` and fill it with the following contents (where <your_key> is the key you get from Yelp):
+```
+[api-access]
+key = <your_key>
+```
+
+### Features
+Currently, food-picker only has one command: `fp find ADDR` which will find restaurants nearby. This command supports multiple option flags to tailor your results. Type `fp find --help` to see these options.
+I plan to add more features in the future.

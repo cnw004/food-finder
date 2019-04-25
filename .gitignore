@@ -3,3 +3,4 @@ fp.egg-info
 .vscode/
 CONFIG.cfg
 fp/__pycache__/
+imgs/
