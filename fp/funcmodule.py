@@ -16,7 +16,7 @@ def get_location(addr):
     """
     Given an address as a string return (latitude, longitude)
     """
-    geolocator = Nominatim(user_agent="specify_your_app_name_here")
+    geolocator = Nominatim(user_agent="fp_cli")
     location = geolocator.geocode(addr)
     return location
 
