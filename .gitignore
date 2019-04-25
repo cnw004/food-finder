@@ -4,3 +4,4 @@ fp.egg-info
 CONFIG.cfg
 fp/__pycache__/
 imgs/
+build/
