@@ -14,8 +14,8 @@ def main():
 @click.option('--number', '-n', type=int, default='5',help='Number of results that will be returned')
 @click.option('--radius', '-r', type=int, default='2',help='Radial distance away you want to search')
 @click.option('--json/--no-json', default=False, help='Flag allows for output to display as json')
-@click.option('--sort', default='rating', type=click.Choice(['rating', 'best', 'distance']), help='Specify how you wish to sort results')
-@click.option('--price', '-p', default='0', multiple=True, type=click.Choice(['0', '1', '2', '3', '4']), help='Specify price point of restaurants')
+@click.option('--sort', '-s', default='rating', type=click.Choice(['rating', 'best_match', 'distance']), help='Specify how you wish to sort results')
+@click.option('--price', '-p', multiple=True, type=click.Choice(['1', '2', '3', '4']), help='Specify price point of restaurants')
 @click.argument('addr')
 def find(addr, kind, number, radius, json, sort, price):
     """Search for the best food nearby"""

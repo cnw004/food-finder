@@ -56,7 +56,7 @@ def search_yelp(coordinates, kinds, number, radius, json, sort, price):
     # tuple -> string separated by commas
     if kinds != ():
         url += '&' + 'categories=' + ','.join(kinds)
-    if price[0] != '0':
+    if price != ():
         url += '&' + 'price=' + ','.join(price)
 
     r = requests.get(url, headers=headers)
