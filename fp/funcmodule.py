@@ -52,7 +52,7 @@ def search_yelp(coordinates, kinds, number, radius, json, sort, price):
     url += '&' + 'longitude=' + coordinates['longitude']
     url += '&' + 'limit=' + number
     url += '&' + 'radius=' + str(radius)
-    url += '&' + 'sort_by' + sort
+    url += '&' + 'sort_by=' + sort
     # tuple -> string separated by commas
     if kinds != ():
         url += '&' + 'categories=' + ','.join(kinds)
