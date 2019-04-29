@@ -37,9 +37,10 @@ def search_yelp(coordinates, kinds, number, radius, json, sort, price):
     handle_error(int(radius), int(number))
 
     # get our API secrets
-    parser = configparser.ConfigParser()
-    parser.read('CONFIG.cfg')
-    key = parser.get('api-access', 'key')
+    # parser = configparser.ConfigParser()
+    # parser.read('CONFIG.cfg')
+    # key = parser.get('api-access', 'key')
+    key = ''
 
     headers = {'Authorization': 'Bearer ' + key,
         'Content-Type': 'application/json'}
@@ -61,7 +62,6 @@ def search_yelp(coordinates, kinds, number, radius, json, sort, price):
 
     r = requests.get(url, headers=headers)
     dirty_output = simplejson.loads(r.text)
-    #print(dirty_output)
     sanitized_output = simplejson.dumps(sanitize_data(dirty_output), indent=4 * ' ')
     if json:
         return sanitized_output
@@ -100,6 +100,9 @@ def sanitize_data(raw_data):
     return info
 
 def pretty_print(sanitized_data):
+    """
+    Take sanitized data and take it from json to a simple printed string. Returns the string
+    """
     output_string = ''
     printer = simplejson.loads(sanitized_data)
     for name in printer:
